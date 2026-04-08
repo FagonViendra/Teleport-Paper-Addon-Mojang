@@ -1,0 +1,51 @@
+{
+  "namespace": "hud",
+
+  "thirst_bar_panel": {
+    "type": "panel",
+    "size": [ 84, 12 ],
+    "anchor_from": "bottom_right",
+    "anchor_to": "bottom_right",
+    "offset": [ -7, -52 ],
+    "controls": [
+      {
+        "thirst_bg@hud.thirst_bar_bg": {}
+      },
+      {
+        "thirst_icon@hud.thirst_icon_label": {}
+      }
+    ]
+  },
+
+  "thirst_bar_bg": {
+    "type": "image",
+    "texture": "textures/ui/White",
+    "size": [ 82, 10 ],
+    "color": [ 0.1, 0.1, 0.15 ],
+    "alpha": 0.5,
+    "anchor_from": "center",
+    "anchor_to": "center"
+  },
+
+  "thirst_icon_label": {
+    "type": "label",
+    "text": "§3§l☁ §r§bNước",
+    "font_size": "small",
+    "anchor_from": "center",
+    "anchor_to": "center",
+    "color": [ 0.4, 0.8, 1.0 ],
+    "shadow": true
+  },
+
+  "root_panel": {
+    "modifications": [
+      {
+        "array_name": "controls",
+        "operation": "insert_front",
+        "value": [
+          { "thirst_panel@hud.thirst_bar_panel": {} }
+        ]
+      }
+    ]
+  }
+}
