@@ -1,39 +1,24 @@
 {
   "namespace": "hud",
 
-  "thirst_bar_panel": {
+  "thirst_wrapper": {
     "type": "panel",
-    "size": [ 81, 9 ],
-    "anchor_from": "bottom_middle",
-    "anchor_to": "bottom_middle",
-    "offset": [ 48, -52 ],
+    "size": [ "100%", "100%" ],
     "controls": [
       {
-        "thirst_bg@hud.thirst_bar_bg": {}
-      },
-      {
-        "thirst_label@hud.thirst_icon_label": {}
+        "thirst_label@hud.thirst_text": {}
       }
     ]
   },
 
-  "thirst_bar_bg": {
-    "type": "image",
-    "texture": "textures/ui/White",
-    "size": [ "100%", "100%" ],
-    "color": [ 0.05, 0.12, 0.18 ],
-    "alpha": 0.65,
-    "anchor_from": "center",
-    "anchor_to": "center"
-  },
-
-  "thirst_icon_label": {
+  "thirst_text": {
     "type": "label",
     "text": "§3☁ §bNước",
     "font_size": "small",
-    "anchor_from": "center",
-    "anchor_to": "center",
-    "shadow": true
+    "shadow": true,
+    "anchor_from": "bottom_right",
+    "anchor_to": "bottom_right",
+    "offset": [ -30, -39 ]
   },
 
   "root_panel": {
@@ -42,7 +27,7 @@
         "array_name": "controls",
         "operation": "insert_front",
         "value": [
-          { "thirst_panel@hud.thirst_bar_panel": {} }
+          { "thirst_wrap@hud.thirst_wrapper": {} }
         ]
       }
     ]
