@@ -101,7 +101,9 @@ function buildThirstBar(thirst) {
     const dropFull = color + "◆".repeat(drops);
     const dropEmpty = "§8" + "◇".repeat(empty);
 
-    return `§3☁ ${dropFull}${dropEmpty} §f${thirst}§7/${THIRST_MAX}`;
+    // Mẹo Action Bar: Đẩy lệch Tâm!
+    // Game luôn căn giữa Action Bar, nếu ta thêm ~70 khoảng trắng bên trái, chữ sẽ bị dồn sang phải.
+    return `§r                                                                      ${dropFull}${dropEmpty}`;
 }
 
 // ════════════════════════════════════════════════════
