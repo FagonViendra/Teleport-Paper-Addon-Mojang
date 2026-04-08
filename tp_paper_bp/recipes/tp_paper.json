@@ -1,0 +1,22 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "custom:recipe_tp_paper"
+    },
+    "tags": ["crafting_table"],
+    "pattern": [
+      "EEE",
+      "EPE",
+      "EEE"
+    ],
+    "key": {
+      "E": { "item": "minecraft:emerald" },
+      "P": { "item": "minecraft:paper" }
+    },
+    "result": {
+      "item": "custom:tp_paper",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Giấy Dịch Chuyển BP",
+    "description": "Addon thêm giấy dịch chuyển về giường.",
+    "uuid": "4ffba621-f4d2-4d37-a287-17ee6c42b841",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 20, 80]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "4ffba621-f4d2-4d37-a287-17ee6c42b842",
+      "version": [1, 0, 0]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "uuid": "4ffba621-f4d2-4d37-a287-17ee6c42b843",
+      "version": [1, 0, 0],
+      "entry": "scripts/main.js"
+    }
+  ],
+  "dependencies": [
+    {
+      "module_name": "@minecraft/server",
+      "version": "1.10.0"
+    }
+  ]
+}

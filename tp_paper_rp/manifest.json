@@ -1,0 +1,17 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Giấy Dịch Chuyển RP",
+    "description": "Resource pack cho giấy dịch chuyển.",
+    "uuid": "4ffba621-f4d2-4d37-a287-17ee6c42b844",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 20, 80]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "4ffba621-f4d2-4d37-a287-17ee6c42b845",
+      "version": [1, 0, 0]
+    }
+  ]
+}

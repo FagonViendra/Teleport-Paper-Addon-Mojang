@@ -1,0 +1,24 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:item": {
+    "description": {
+      "identifier": "custom:tp_paper",
+      "menu_category": {
+        "category": "equipment",
+        "group": "itemGroup.name.misc"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "texture": "paper"
+      },
+      "minecraft:use_duration": 5.0,
+      "minecraft:use_animation": "bow",
+      "minecraft:max_stack_size": 16,
+      "minecraft:custom_components": ["custom:tp_paper_use"],
+      "minecraft:display_name": {
+        "value": "Giấy Dịch Chuyển"
+      }
+    }
+  }
+}
