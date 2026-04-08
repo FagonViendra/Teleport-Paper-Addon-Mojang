@@ -10,7 +10,7 @@
     },
     "components": {
       "minecraft:icon": {
-        "texture": "paper"
+        "texture": "tp_paper_icon"
       },
       "minecraft:use_duration": 5.0,
       "minecraft:use_animation": "bow",

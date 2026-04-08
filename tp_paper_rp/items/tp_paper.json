@@ -7,7 +7,7 @@
     },
     "components": {
       "minecraft:icon": {
-        "texture": "paper"
+        "texture": "tp_paper_icon"
       }
     }
   }
