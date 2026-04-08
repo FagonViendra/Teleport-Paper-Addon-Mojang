@@ -1,0 +1,27 @@
+{
+  "namespace": "hud",
+
+  "hud_actionbar_text": {
+    "type": "panel",
+    "size": [ "100%c", "100%c" ],
+    "anchor_from": "bottom_middle",
+    "anchor_to": "bottom_middle",
+    "offset": [ 50, -49 ],
+    "controls": [
+      {
+        "actionbar_message": {
+          "type": "label",
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "color": "$tool_tip_text",
+          "enable_profanity_filter": true,
+          "layer": 31,
+          "text": "$actionbar_text",
+          "shadow": true,
+          "localize": false,
+          "alpha": "@hud.anim_actionbar_text_alpha_out"
+        }
+      }
+    ]
+  }
+}
