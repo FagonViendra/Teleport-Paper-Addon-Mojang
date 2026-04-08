@@ -89,16 +89,17 @@ function setThirst(player, value) {
 
 // Hàm tạo thanh nước (Dùng Custom Font tn.png)
 function buildThirstBar(thirst) {
-    const fullDrops = Math.floor(thirst / 2); // 0-10 giọt đầy (\uE100)
-    const isHalf = thirst % 2 !== 0;          // Nửa giọt (\uE101)
-    const emptyDrops = 10 - fullDrops - (isHalf ? 1 : 0); // Giọt rỗng (\uE102)
+    const fullDrops = Math.floor(thirst / 2); // 0-10 giọt đầy (\uE250)
+    const isHalf = thirst % 2 !== 0;          // Nửa giọt (\uE251)
+    const emptyDrops = 10 - fullDrops - (isHalf ? 1 : 0); // Giọt rỗng (\uE252)
 
-    const dropFull = "\uE100".repeat(fullDrops);
-    const dropHalf = isHalf ? "\uE101" : "";
-    const dropEmpty = "\uE102".repeat(emptyDrops);
+    const dropFull = "\uE250".repeat(fullDrops);
+    const dropHalf = isHalf ? "\uE251" : "";
+    const dropEmpty = "\uE252".repeat(emptyDrops);
 
-    // Dùng code màu trắng (§f) để không bị nhuộm màu hình ảnh, chỉ hiện mỗi các biểu tượng giọt nước!
-    return `§f${dropFull}${dropHalf}${dropEmpty}`;
+    // Đã gỡ bỏ dải đen ở JSON UI. 
+    // Nay đẩy một chút padding khoảng trắng bên trái để thanh nước nằm đẹp sát thanh đói!
+    return `§f                 ${dropFull}${dropHalf}${dropEmpty}`;
 }
 
 // ════════════════════════════════════════════════════
