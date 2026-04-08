@@ -6,7 +6,7 @@
     "size": [ "100%c", "100%c" ],
     "anchor_from": "bottom_middle",
     "anchor_to": "bottom_middle",
-    "offset": [ 50, -49 ],
+    "offset": [ 70, -38 ],
     "controls": [
       {
         "actionbar_message": {
