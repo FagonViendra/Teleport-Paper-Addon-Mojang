@@ -1,65 +1,42 @@
 import { world, system } from "@minecraft/server";
 
-const TpPaperComponent = {
-    onUse(event) {
-        const player = event.source;
-        player.sendMessage("§e[Debug] Đã nhấn giữ - bắt đầu kích hoạt giấy dịch chuyển...");
-    },
-    onCompleteUse(event) {
-        const player = event.source;
-        player.sendMessage("§e[Debug] onCompleteUse kích hoạt! Hoàn tất giữ vật phẩm.");
-        
-        if (player.typeId !== "minecraft:player") return;
+console.warn("[TP Paper] Script đã được nạp thành công!");
 
-        const equipment = player.getComponent("minecraft:equippable");
-        if (equipment) {
-            const slot = equipment.getEquipmentSlot("Mainhand");
-            if (slot && slot.typeId === "custom:tp_paper") {
-                if (slot.amount > 1) {
-                    const newItem = slot.getItem();
-                    newItem.amount -= 1;
-                    slot.setItem(newItem);
-                } else {
-                    slot.setItem(undefined);
-                }
-            } else {
-                const offSlot = equipment.getEquipmentSlot("Offhand");
-                if (offSlot && offSlot.typeId === "custom:tp_paper") {
-                    if (offSlot.amount > 1) {
-                        const newItem = offSlot.getItem();
-                        newItem.amount -= 1;
-                        offSlot.setItem(newItem);
-                    } else {
-                        offSlot.setItem(undefined);
-                    }
-                }
-            }
-            player.sendMessage("§e[Debug] Bước trừ vật phẩm hoàn thành.");
-        }
+world.afterEvents.itemCompleteUse.subscribe((event) => {
+    const player = event.source;
+    const item = event.itemStack;
 
-        player.sendMessage("§e[Debug] Đang đọc thông tin giường ngủ...");
-        let spawnPos;
-        try {
-            spawnPos = player.getSpawnPoint();
-        } catch(e) {
-            player.sendMessage("§c[Debug] Lỗi trong lúc lấy spawn point: " + e);
-        }
+    console.warn(`[TP Paper Debug] itemCompleteUse kích hoạt! Item: ${item?.typeId}`);
 
-        if (spawnPos) {
-            try {
-                player.sendMessage(`§a[Debug] Giường nằm ở: ${spawnPos.x}, ${spawnPos.y}, ${spawnPos.z}`);
-                player.teleport(spawnPos, { dimension: spawnPos.dimension });
-                player.sendMessage("§a[Hệ thống] Đã dịch chuyển bạn về điểm hồi sinh an toàn!");
-            } catch (err) {
-                 player.sendMessage(`§c[Debug] Ngoại lệ khi chạy lệnh teleport: ${err}`);
-            }
-        } else {
-            player.sendMessage("§c[Hệ thống] Tọa độ giường trống (bằng không). Bạn chưa có điểm hồi sinh thiết lập từ giường!");
-        }
+    if (item?.typeId !== "custom:tp_paper") return;
+    if (player?.typeId !== "minecraft:player") return;
+
+    player.sendMessage("§e[Debug] Giấy Dịch Chuyển đã được sử dụng xong!");
+
+    // Đọc thông tin spawn point (giường ngủ)
+    let spawnPos;
+    try {
+        spawnPos = player.getSpawnPoint();
+        player.sendMessage(`§e[Debug] SpawnPoint: ${JSON.stringify(spawnPos)}`);
+    } catch (e) {
+        player.sendMessage(`§c[Debug] Lỗi khi đọc spawn point: ${e}`);
+        return;
     }
-};
 
-world.beforeEvents.worldInitialize.subscribe((initEvent) => {
-    initEvent.itemComponentRegistry.registerCustomComponent("custom:tp_paper_use", TpPaperComponent);
-    console.warn("[Debug] Đã đăng ký custom component: custom:tp_paper_use");
+    if (spawnPos && spawnPos.x !== undefined) {
+        system.run(() => {
+            try {
+                const dim = world.getDimension(spawnPos.dimension?.id ?? "overworld");
+                player.teleport(
+                    { x: spawnPos.x, y: spawnPos.y, z: spawnPos.z },
+                    { dimension: dim }
+                );
+                player.sendMessage("§a✦ Đã dịch chuyển bạn về giường ngủ thành công!");
+            } catch (err) {
+                player.sendMessage(`§c[Debug] Lỗi teleport: ${err}`);
+            }
+        });
+    } else {
+        player.sendMessage("§c✦ Bạn chưa đặt giường ngủ nào! Hãy ngủ một đêm trước đã.");
+    }
 });
