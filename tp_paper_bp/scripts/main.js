@@ -87,22 +87,18 @@ function setThirst(player, value) {
     } catch {}
 }
 
-// Hàm tạo thanh nước Unicode
+// Hàm tạo thanh nước (Dùng Custom Font tn.png)
 function buildThirstBar(thirst) {
-    const drops = Math.ceil(thirst / 2); // 0-10 giọt
-    const empty = 10 - drops;
+    const fullDrops = Math.floor(thirst / 2); // 0-10 giọt đầy (\uE100)
+    const isHalf = thirst % 2 !== 0;          // Nửa giọt (\uE101)
+    const emptyDrops = 10 - fullDrops - (isHalf ? 1 : 0); // Giọt rỗng (\uE102)
 
-    let color;
-    if (thirst > 14) color = "§b";       // xanh dương sáng
-    else if (thirst > 8) color = "§3";    // xanh dương đậm
-    else if (thirst > 4) color = "§e";    // vàng
-    else color = "§c";                     // đỏ
+    const dropFull = "\uE100".repeat(fullDrops);
+    const dropHalf = isHalf ? "\uE101" : "";
+    const dropEmpty = "\uE102".repeat(emptyDrops);
 
-    const dropFull = color + "◆".repeat(drops);
-    const dropEmpty = "§8" + "◇".repeat(empty);
-
-    // Trả lại trạng thái bình thường (ngắn gọn, ở giữa)
-    return `§3☁ ${dropFull}${dropEmpty} §f${thirst}§8/20`;
+    // Dùng code màu trắng (§f) để không bị nhuộm màu hình ảnh, chỉ hiện mỗi các biểu tượng giọt nước!
+    return `§f${dropFull}${dropHalf}${dropEmpty}`;
 }
 
 // ════════════════════════════════════════════════════
