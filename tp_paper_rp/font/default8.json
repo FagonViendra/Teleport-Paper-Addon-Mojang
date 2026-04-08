@@ -3,10 +3,9 @@
     {
       "type": "bitmap",
       "file": "textures/ui/tn.png",
-      "ascent": 8,
-      "height": 10,
+      "ascent": 7,
       "chars": [
-        "\uE250\uE251\uE252"
+        "\uE150\uE151\uE152"
       ]
     }
   ]
